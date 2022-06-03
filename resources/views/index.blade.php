@@ -59,9 +59,9 @@
                             </div>
                             <!--submit-->
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12 mt-4">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-lg btn-outline-primary">Book trip</button>
+                                        <button type="submit" class="btn btn-lg btn-success">Boek je reis</button>
                                     </div>
                                 </div>
                             </div>

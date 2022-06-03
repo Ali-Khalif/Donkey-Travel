@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TripController;
 
@@ -19,9 +20,10 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::resource('trips', TripController::class
-
-);
+Route::resource('trips', TripController::class);
+Route::resource('status', StatusController::class);
+//route search
+Route::get('/search', [TripController::class, 'search' ])->name('search');
 
 Auth::routes();
 

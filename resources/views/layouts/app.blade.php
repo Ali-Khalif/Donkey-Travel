@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Donkey travel</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -23,9 +23,9 @@
 <body>
     <div class="app" id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container-xl">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Donkey Travel
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -38,7 +38,7 @@
                             <a class="nav-link" href="#">Booking</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Trip</a>
+                            <a class="nav-link" href="{{route('trips.index')}}">Trip</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
@@ -90,21 +90,34 @@
     </div>
 <div>
 
-    <!--alert message succes and error-->
-    @if(session()->has('succes'))
-        <div class="alert alert-success">
-            {{ session()->get('succes') }}
-        </div>
+
+    <!--create popup using css and js-->
+   @if(session()->has('succes'))
+    <div class="alert alert-success text-lg-center">
+        <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ session()->get('succes') }}
+    </div>
     @endif
     @if(session()->has('error'))
-        <div class="alert alert-danger">
-            {{ session()->get('error') }}
-        </div>
-@endif
+    <div class="alert alert-danger text-lg-center">
+        <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>        {{ session()->get('error') }}
+    </div>
+    @endif
+
+
     <!--end alert message-->
-    <main class="py-4">
+
         @yield('content')
-    </main>
+
+
+    <script src="{{ asset('js/app.js') }}" defer>
+
+
+    </script>
 
 </div>
 </body>

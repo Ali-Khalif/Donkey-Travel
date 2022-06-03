@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class trip extends Model
 {
     use HasFactory;
-    protected $table = "Trips";
+    protected $table = "trips";
 
     protected $fillable =
         ['Omschrijving',

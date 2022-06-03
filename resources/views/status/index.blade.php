@@ -33,7 +33,7 @@
         <!--button add trip-->
         <div class="row">
             <div class="col-md-6">
-                <a href="{{route('trips.create')}}"> <button class="btn btn-lg btn-info text-black p-2"><i class="bi bi-plus-lg text-white p-2"></i>Voeg nieuwe tocht toe</button></a>
+                <a href="{{route('status.create')}}"> <button class="btn btn-lg btn-info text-black p-2"><i class="bi bi-plus-lg text-white p-2"></i>Voeg nieuwe tocht toe</button></a>
             </div>
             <div class="col-md-6">
                 <!--search-->
@@ -55,18 +55,20 @@
                 <th scope="col">Omschrijving</th>
                 <th scope="col">Route</th>
                 <th scope="col">Aantal dagen</th>
+                <th scope="col">PIN</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($trips as $trip)
+            @foreach($statuses as $status)
                 <tr>
-                    <td>{{ $trip->id }}</td>
-                    <td>{{ $trip->Omschrijving }}</td>
-                    <td>{{ $trip->Route }}</td>
-                    <td>{{ $trip->AantalDagen }}</td>
+                    <td>{{ $status->id }}</td>
+                    <td>{{ $status->StatusCode }}</td>
+                    <td>{{ $status->Status }}</td>
+                    <td>{{ $status->Verwijderbaar}}</td>
+                    <td>{{ $status->PIN}}</td>
                     <td>
-                        <form action="{{ route('trips.edit', $trip->id) }}" method="GET">
+                        <form action="#" method="GET">
                             @csrf
                             <button type="submit" class="btn btn-warning">
                                 <i class="fas fa-edit"></i>
@@ -75,10 +77,10 @@
                             </button>
                         </form>
 
-                        <form action="{{ route('trips.destroy', $trip->id) }}"  method="POST">
+                        <form action="{{ route('status.destroy', $status->id) }}"  method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Weet je zeker dat je  tocht met ID={{$trip->id}} uit de database wilt verwijderen?')">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Weet je zeker dat je  tocht met ID={{$status->id}} uit de database wilt verwijderen?')">
                                 <i class="bi-trash "></i>
                                 Verwijderen
                             </button>
