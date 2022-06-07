@@ -29,11 +29,11 @@
     </style>
     <!--foreach trip-->
     <!--table responsive-->
-    <div class="container mt-4">
+    <div class="container  ">
         <!--button add trip-->
         <div class="row">
             <div class="col-md-6">
-                <a href="{{route('status.create')}}"> <button class="btn btn-lg btn-info text-black p-2"><i class="bi bi-plus-lg text-white p-2"></i>Voeg nieuwe tocht toe</button></a>
+                <a href="{{route('status.create')}}"> <button class="btn btn-lg btn-info text-black p-2"><i class="bi bi-plus-lg text-white p-2"></i>Voeg nieuwe status toe</button></a>
             </div>
             <div class="col-md-6">
                 <!--search-->
@@ -52,45 +52,46 @@
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Omschrijving</th>
-                <th scope="col">Route</th>
-                <th scope="col">Aantal dagen</th>
+                <th scope="col">StatusCode</th>
+                <th scope="col">Status</th>
+                <th scope="col">Verwijderbaar</th>
                 <th scope="col">PIN</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
-            <tbody>
             @foreach($statuses as $status)
+                <tbody>
                 <tr>
-                    <td>{{ $status->id }}</td>
-                    <td>{{ $status->StatusCode }}</td>
-                    <td>{{ $status->Status }}</td>
-                    <td>{{ $status->Verwijderbaar}}</td>
-                    <td>{{ $status->PIN}}</td>
+                    <th scope="row">{{$status->id}}</th>
+                    <td>{{$status->StatusCode}}</td>
+                    <th>{{$status->Status}}</th>
+                    <td>{{$status->Verwijderbaar}}</td>
+                    <td>{{$status->PIN}}</td>
                     <td>
-                        <form action="#" method="GET">
-                            @csrf
-                            <button type="submit" class="btn btn-warning">
-                                <i class="fas fa-edit"></i>
+                        <!--edit-->
+                        <form action="{{ route('status.edit', $status->id) }}" method="GET">
+                            <button class="btn  btn-warning" type="submit">
                                 <i class="bi-gear "></i>
                                 Bewerken
                             </button>
                         </form>
 
-                        <form action="{{ route('status.destroy', $status->id) }}"  method="POST">
+
+                        <form action="{{route('status.destroy', $status->id)}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Weet je zeker dat je  tocht met ID={{$status->id}} uit de database wilt verwijderen?')">
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Weet je zeker dat je deze status met ID={{$status->id}} wilt verwijderen?')">
                                 <i class="bi-trash "></i>
                                 Verwijderen
                             </button>
                         </form>
+
                     </td>
                 </tr>
+                </tbody>
             @endforeach
-            </tbody>
         </table>
     </div>
-
-
 @endsection
+
+

@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('herbergs', function (Blueprint $table) {
             $table->id();
-            //code
-            $table->integer('StatusCode');
-            $table->string('Status');
-            $table->string('Verwijderbaar');
-            $table->string('PIN');
+            $table->string('name');
+            $table->string('address');
+            $table->string('email')->unique();
+            $table->string('phone');
+            $table->string('coordinator');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('herbergs');
     }
 };

@@ -1,7 +1,7 @@
 @extends('layouts.Admin')
 @section('content')
 
-    <div class="container vw-85">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="row">
 
@@ -13,9 +13,9 @@
                 <div class="col-md-6">
                     <div class="form-header">
                         <a href="{{ route('trips.index') }}">
-                        <button class="btn btn-lg btn-info float-end text-white">
-                            Terug naar overzicht
-                        </button>
+                            <button class="btn btn-lg btn-info float-end text-white">
+                                Terug naar overzicht
+                            </button>
                         </a>
                     </div>
                 </div>

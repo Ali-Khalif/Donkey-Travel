@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class status extends Model
 {
     use HasFactory;
+
+    protected $table = "statuses";
+    protected $fillable = [
+        'StatusCode',
+        'Status',
+        'Verwijderbaar',
+        'PIN',
+    ];
 }

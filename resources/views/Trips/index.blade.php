@@ -29,7 +29,7 @@
     </style>
     <!--foreach trip-->
     <!--table responsive-->
-    <div class="container mt-4">
+    <div class="container ">
         <!--button add trip-->
         <div class="row">
             <div class="col-md-6">
@@ -69,7 +69,6 @@
                         <form action="{{ route('trips.edit', $trip->id) }}" method="GET">
                             @csrf
                             <button type="submit" class="btn btn-warning">
-                                <i class="fas fa-edit"></i>
                                 <i class="bi-gear "></i>
                                 Bewerken
                             </button>
