@@ -2,7 +2,7 @@ body{
     display: grid;
     max-width: 100vw;
     grid-template-areas:
-        "nav header header header"
+        "header header header header"
         "nav section section section"
         "nav section section section";
     grid-template-rows: 55px  1fr 1fr;
@@ -10,6 +10,7 @@ body{
     min-height: 100vh;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 .gear i{
@@ -18,10 +19,10 @@ body{
 
 }
 .left-nav{
-    z-index: 9;
-    position: fixed;
-    top: 0;
+    position: sticky;
     left: 0;
+    top: 55px;
+    z-index: 9;
     width: 20vw;
     grid-area: nav;
     height: 100vh;
@@ -34,18 +35,17 @@ body{
     color: rgb(255, 255, 255);
     text-decoration: none;
     text-transform: capitalize;
+    padding: 1rem;
 }
 /* make test caps */
 
 .left-nav a:hover {
     color: lightskyblue;
+    background-color: #5d5d5d;
 }
 header{
     z-index: 9;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 79vw;
+    width: 100vw;
     grid-area: header;
     padding: 0;
     margin: 0;
@@ -107,5 +107,8 @@ header{
 
 form {
     display: inline-block;
-    text-align: center;
+    padding: 5px;
+}
+table{
+    margin-top: 20px;
 }

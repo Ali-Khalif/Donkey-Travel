@@ -52,6 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'telefoonnummer' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -67,7 +68,30 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'telefoonnummer' => $data['telefoonnummer'],
             'password' => Hash::make($data['password']),
         ]);
     }
+
+
+    // //index
+    //    public function index() {
+    //        $user = Auth::user();
+    //        return view('home', compact('user'));
+    //    }
+    //
+    //   //user can edit their profile
+    //    public function edit() {
+    //        $user = Auth::user();
+    //        return view('home', compact('user'));
+    //    }
+    //
+    //    //allow user to update their profile
+    //    public function update(Request $request) {
+    //        $user = Auth::user();
+    //        $user->name = $request->name;
+    //        $user->email = $request->email;
+    //        $user->save();
+    //        return back()->with('success', 'Your profile has been updated');
+    //    }
 }

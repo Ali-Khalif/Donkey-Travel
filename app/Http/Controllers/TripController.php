@@ -68,6 +68,12 @@ class TripController extends Controller
      *
      *
      */
+    //boeking
+    public function boeking()
+    {
+        $trips = trip::all();
+        return view('index', compact('trips'));
+    }
     public function show(trip $trip)
     {
         //show a specific trip

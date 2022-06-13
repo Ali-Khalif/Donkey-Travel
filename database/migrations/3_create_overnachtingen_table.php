@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,16 +13,12 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('overnachtingen', function (Blueprint $table) {
             $table->id();
-            //StartDatum
-            $table->DATE('StartDatum');
-            $table->integer('PINCode');
-            $table->foreignId('Trip_id')->nullable()->constrained('trips');
-            $table->foreignId('Klant_id')->nullable()->constrained('users');
+            $table->foreignId('Booking_id')->nullable()->constrained('bookings');
+            $table->foreignId('Herberg_id')->nullable()->constrained('herbergen');
             $table->foreignId('Status_id')->nullable()->constrained('statuses');
             $table->timestamps();
-
         });
     }
 
@@ -32,6 +29,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('overnachtingen');
     }
 };

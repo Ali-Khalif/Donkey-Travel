@@ -20,20 +20,24 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <!--startDatum-->
-                                        <label for="startDatum">Start Datum</label>
+                                        <label for="startDatum">Start Datum:</label>
                                         <!--startDatum date minumum a week from today-->
                                         <input type="date" id="startDatum" name="startDatum"
-                                               min="{{ date('Y-m-d', strtotime('+1 week')) }}"
-                                               value="{{ date('Y-m-d', strtotime('+1 week')) }}"
-                                               class="form-control">
+                                               min="{{ date('d-m-Y', strtotime("+1 week")) }}"
+                                               value="{{ date('d-m-Y', strtotime('+1 week')) }}"
+                                               class="form-control datepicker">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <!--eindDatum-->
-                                        <label for="eindDatum">Eind Datum</label>
-                                        <input type="date" class="form-control" id="eindDatum" name="eindDatum"
-                                               placeholder="Eind Datum">
+                                        <label for="eindDatum">Tocht:</label>
+                                        <select name="eindDatum" id="eindDatum" class="form-control">
+                                            @foreach($trips as $trip)
+                                                <option value="{{ $trip->id }}">{{ $trip->Omschrijving }} ({{ $trip->AantalDagen }} dagen)</option>
+
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 

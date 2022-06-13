@@ -53,24 +53,24 @@
                     </li>
                 </ul>
 
-                <ul class="nav-bar navbar-nav dropdown px-lg-5">
+                <ul class="nav-bar navbar-nav dropdown ">
                     @guest
                         @if (Route::has('login'))
-                            <li class="nav-item">
+                            <li class="nav-item ">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                         @endif
                         @if (Route::has('register'))
-                            <li class="nav-item">
+                            <li class="nav-item ">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
                     @else
 
-                        <li class=" dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <li class=" dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{Auth::user()->name}}
                         </li>
-                        <ul class="dropdown-menu w-auto" aria-labelledby="dropdownMenuButton1">
+                        <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
                             <li class="dropdown-item">
                                 <a class="dropdown-item" href="{{route('home')}}">Profile</a>
                             </li>
@@ -100,7 +100,7 @@
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav flex-column" id="side-menu">
-                <li class="nav-item text-center text-capitalize text-black p-3 bg-white ">
+                <li class="nav-item text-center text-capitalize text-black p-3 bg-info opacity-80 ">
                     <!--- if user is logged in get users name and show it else show a guest -->
                     <!-- if user isn't logged in show guest name as guest -->
                     @if(Auth::check())
@@ -117,10 +117,10 @@
                     <a href="{{route('status.index')}}" class="nav-link">Statussen</a>
                 </li>
                 <li class="nav-item px-lg-2 ">
-                    <a href="#" class="nav-link"> Restauranten</a>
+                    <a href="{{route('restaurant.index')}}" class="nav-link"> Restauranten</a>
                 </li>
                 <li class="nav-item px-lg-2 ">
-                    <a href="#" class="nav-link">herbergen</a>
+                    <a href="{{route('herbergen.index')}}" class="nav-link">herbergen</a>
                 </li>
 
             </ul>
@@ -130,9 +130,9 @@
 
 
 <secion class="section">
-        <div class="gear">
-            <i class="bi-gear text-lg-center float-end " id="gear" style="font-size: x-large"></i>
-        </div>
+    <div class="gear">
+        <i class="bi-gear text-lg-center float-end " id="gear" style="font-size: x-large"></i>
+    </div>
     @yield('content')
 </secion>
 

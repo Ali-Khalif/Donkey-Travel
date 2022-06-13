@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\HerbergenController;
+use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TripController;
@@ -17,33 +21,35 @@ use App\Http\Controllers\TripController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [ TripController::class, 'boeking'])->name('boeking');
 
-Route::get('/lol', function () {
-    return view('status.lol');
-});
 
 
 //route search
 Route::get('/search', [TripController::class, 'search'])->name('search');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 //Route::resource('status', StatusController::class)->middleware('admin');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::resource('/home', UserController::class)->middleware('verified');
 //if user is_admin = true then redirect to route::resource('admin', 'AdminController');
-Route::get('/admin', function () {
-    return view('admin.index');
-})->middleware('is_admin');
 
 Route::get('/admin', function () {
     return view('layouts.Admin');
 })->middleware('admin');
-
-Route::group(['middleware' => 'admin'], function () {
+/*
+Route::group(['middleware' => 'admin', 'verified' ], function () {
+    Route::resource('/trips', TripController::class);
+    Route::resource('/status', StatusController::class);
+});*/
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+    Route::resource('/booking', BookingController::class
+        , ['except' => ['create', 'store']]);
+    Route::resource('/herbergen', HerbergenController::class);
+    Route::resource('/restaurant', RestaurantController::class);
     Route::resource('/trips', TripController::class);
     Route::resource('/status', StatusController::class);
 });
+
 
 

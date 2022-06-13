@@ -49,6 +49,9 @@
                             <a class="nav-link" href="{{route('status.index')}}">Status</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{route('restaurant.index')}}">restaurant</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                     </ul>
@@ -98,7 +101,6 @@
 <div>
 
 
-    <!--create popup using css and js-->
     @if(session()->has('succes'))
         <div class="alert alert-success text-lg-center">
             <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
@@ -122,8 +124,8 @@
 
 
     <script src="{{ asset('js/app.js') }}" defer>
-
-
+    </script>
+    <script src="{{ asset('js/donkey.js') }}">
     </script>
 
 </div>
