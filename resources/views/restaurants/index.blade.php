@@ -45,7 +45,7 @@
                     <td>{{$restaurant->Telefoon}}</td>
                     <td>{{$restaurant->Coordinaten}}</td>
                     <td class="p-2">
-                        <form action="{{ route('restaurant.edit', $restaurant->id) }}" method="GET">
+                        <form action="{{ route('restaurant.edit', $restaurant) }}" method="GET">
                             @csrf
                             <button type="submit" class="btn btn-warning">
                                 <i class="bi-gear "></i>

@@ -8,9 +8,6 @@
             display: inline-block;
             text-align: center;
         }
-        th, td{
-            text-align: left;
-        }
 
         @media (max-width: 576px) {
             th td {

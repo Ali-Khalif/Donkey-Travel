@@ -40,7 +40,7 @@ class StatusController extends Controller
         $status->save();
 
         if ($status) {
-            return redirect('/status')->with('succes', 'Status is met succes toegevoegd');
+            return redirect('/status')->with('success', 'Status is met succes toegevoegd');
 
         } else {
             return redirect('/status')->with('error', 'Status is niet toegevoegd');
@@ -80,7 +80,7 @@ class StatusController extends Controller
         $status->save();
 
         if ($status) {
-            return redirect('/status')->with('succes', 'Status is met succes aangepast');
+            return redirect('/status')->with('success', 'Status is met succes aangepast');
 
         } else {
             return redirect('/status')->with('error', 'Status is niet aangepast');
@@ -96,7 +96,7 @@ class StatusController extends Controller
         $status->delete();
 
         if ($status) {
-            return redirect('/status')->with('succes', 'Status is met succes verwijderd');
+            return redirect('/status')->with('success', 'Status is met succes verwijderd');
 
         } else {
             return redirect('/status')->with('error', 'Status is niet verwijderd');

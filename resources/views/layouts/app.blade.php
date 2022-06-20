@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -25,7 +26,7 @@
 <body>
 <div class="app" id="app">
     <header>
-        <nav class="navbar navbar-expand-md bg-white navbar-light shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container-xl">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Donkey Travel
@@ -39,22 +40,23 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Booking</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('trips.index')}}">Trip</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('status.index')}}">Status</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('restaurant.index')}}">restaurant</a>
-                        </li>
+                        <!--if user is logged in show mijnbooking-->
+                        @guest
+
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('booking.MijnBooking')}}">Mijn Booking</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact</a>
+                            </li>
+                        @endauth
                     </ul>
+
 
                     <ul class="nav-bar navbar-nav dropdown px-lg-5">
                         @guest
@@ -70,13 +72,23 @@
                             @endif
                         @else
 
-                            <li class=" dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <li class=" dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{Auth::user()->name}}
                             </li>
                             <ul class="dropdown-menu w-auto" aria-labelledby="dropdownMenuButton1">
                                 <li class="dropdown-item">
                                     <a class="dropdown-item" href="{{route('home')}}">Profile</a>
                                 </li>
+                                <!--if user is middleware admin-->
+                                @if(Auth::user()->is_admin == true)
+                                    <li class="dropdown-item">
+                                        <a class="dropdown-item" href="{{url('admin')}}">Admin</a>
+                                    </li>
+                                @else
+                                    <li class="dropdown-item">
+                                        <a class="dropdown-item" href="{{route('booking.MijnBooking')}}">Boekingen</a>
+                                    </li>
+                                @endif
                                 <li class="dropdown-item">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -101,12 +113,12 @@
 <div>
 
 
-    @if(session()->has('succes'))
+    @if(session()->has('success'))
         <div class="alert alert-success text-lg-center">
             <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            {{ session()->get('succes') }}
+            {{ session()->get('success') }}
         </div>
     @endif
     @if(session()->has('error'))
@@ -118,7 +130,10 @@
     @endif
 
 
-<!--end alert message-->
+    <!--end alert message-->
+    @extends('layouts.footer')
+    @section('footer')
+    @endsection
 
     @yield('content')
 

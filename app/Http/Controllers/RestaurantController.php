@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
-use function GuzzleHttp\Promise\all;
 
 
 class RestaurantController extends Controller
@@ -49,7 +48,7 @@ class RestaurantController extends Controller
         $restaurant->save();
 
         if ($restaurant) {
-            return redirect('/restaurant')->with('succes', 'Restaurant is met succes toegevoegd');
+            return redirect('/restaurant')->with('success', 'Restaurant is met succes toegevoegd');
 
         } else {
             return redirect('/restaurant')->with('error', 'Restaurant is niet toegevoegd');
@@ -65,12 +64,34 @@ class RestaurantController extends Controller
 
     public function edit(Restaurant $restaurant)
     {
-        //
+
+        return view('restaurants.edit', compact('restaurant'));
     }
 
     public function update(Request $request, Restaurant $restaurant)
     {
         //
+        $this->validate($request, [
+            'Naam' => 'required',
+            'Adres' => 'required',
+            'Telefoon' => 'required',
+            'Email' => 'required',
+            'Coordinaten' => 'required',
+        ]);
+
+        $restaurant->Naam = $request->Naam;
+        $restaurant->Adres = $request->Adres;
+        $restaurant->Telefoon = $request->Telefoon;
+        $restaurant->Email = $request->Email;
+        $restaurant->Coordinaten = $request->Coordinaten;
+        $restaurant->save();
+
+        if ($restaurant) {
+            return redirect('/restaurant')->with('success', 'Restaurant is met succes aangepast');
+
+        } else {
+            return redirect('/restaurant')->with('error', 'Restaurant is niet aangepast');
+        }
     }
 
     public function destroy(Restaurant $restaurant)
@@ -79,7 +100,7 @@ class RestaurantController extends Controller
         $restaurant->delete();
 
         if ($restaurant) {
-            return redirect('/restaurant')->with('succes', 'Restaurant is met succes verwijderd');
+            return redirect('/restaurant')->with('success', 'Restaurant is met succes verwijderd');
 
         } else {
             return redirect('/restaurant')->with('error', 'Restaurant is niet verwijderd');

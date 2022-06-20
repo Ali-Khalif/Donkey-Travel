@@ -69,11 +69,19 @@
                             </div>
                         </div>
                         <!--submit-->
-                        <div class="row mt-4">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-lg btn-success">Opslaan</button>
-                                </div>
+                        <div class="col-md-12 mt-2">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-lg btn-success  text-white">
+                                    <i class="bi bi-check-all"></i>
+                                    Wijzigen
+                                </button>
+
+                                <a href="{{ route('status.index') }}">
+                                    <button type="button" class="btn btn-lg btn-danger  text-white">
+                                        <i class="bi bi-x"></i>
+                                        Annuleren
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>

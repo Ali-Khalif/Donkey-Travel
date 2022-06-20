@@ -17,4 +17,9 @@ class trip extends Model
         'AantalDagen'
         ];
 
+    public function booking(): HasMany
+    {
+        return $this->hasMany(booking::class);
+    }
+
 }

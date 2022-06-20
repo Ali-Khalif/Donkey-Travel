@@ -69,11 +69,18 @@
 
                     </div>
 
-                    <!--submit-->
                     <div class="row mt-4">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-lg btn-success">Opslaan</button>
+                                <button type="submit" class="btn btn-lg btn-success">
+                                    <i class="bi bi-save"></i>
+                                    Opslaan</button>
+                                <a href="{{ route('restaurant.index') }}">
+                                    <button class="btn btn-lg btn-info text-white">
+                                        <i class="bi bi-house"></i>
+                                        Annuleren
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -82,7 +89,5 @@
             </div>
         </div>
     </div>
-
-
 
 @endsection

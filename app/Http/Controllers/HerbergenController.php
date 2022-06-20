@@ -3,84 +3,98 @@
 namespace App\Http\Controllers;
 
 use App\Models\Herbergen;
-use App\Http\Requests\StoreHerbergenRequest;
-use App\Http\Requests\UpdateHerbergenRequest;
+
+use Illuminate\Http\Request;
 
 class HerbergenController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        //alle herbergen ophalen
+        $herbergens = Herbergen::all();
+        return view('herberg.index', compact('herbergens'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        //het formulier voor het toevoegen van een nieuwe herbergen
+        return view('herberg.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreHerbergenRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreHerbergenRequest $request)
+    public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'Naam' => 'required',
+            'Adres' => 'required',
+            'Telefoon' => 'required',
+            'Email' => 'required',
+            'Coordinaten' => 'required',
+        ]);
+
+        $herbergen = new Herbergen();
+        $herbergen->Naam = $request->Naam;
+        $herbergen->Adres = $request->Adres;
+        $herbergen->Telefoon = $request->Telefoon;
+        $herbergen->Email = $request->Email;
+        $herbergen->Coordinaten = $request->Coordinaten;
+        $herbergen->save();
+
+        if ($herbergen) {
+            return redirect('/herbergen')->with('success', 'Uw herbergen is aangevraagd');
+
+        } else {
+            return redirect('/herbergen')->with('error', 'Uw herbergen is niet aangevraagd');
+        }
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Herbergen  $herbergen
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Herbergen $herbergen)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Herbergen  $herbergen
-     * @return \Illuminate\Http\Response
-     */
+//edit
     public function edit(Herbergen $herbergen)
     {
-        //
+        //het formulier voor het bewerken van een herbergen
+        return view('herberg.edit', compact('herbergen'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateHerbergenRequest  $request
-     * @param  \App\Models\Herbergen  $herbergen
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateHerbergenRequest $request, Herbergen $herbergen)
+    public function update(Request $request, Herbergen $herbergen)
     {
-        //
+        //validate all inputs
+        $this->validate($request, [
+            'Naam' => 'required',
+            'Adres' => 'required',
+            'Telefoon' => 'required',
+            'Email' => 'required',
+            'Coordinaten' => 'required',
+        ]);
+
+        $herbergen->Naam = $request->Naam;
+        $herbergen->Adres = $request->Adres;
+        $herbergen->Telefoon = $request->Telefoon;
+        $herbergen->Email = $request->Email;
+        $herbergen->Coordinaten = $request->Coordinaten;
+        $herbergen->save();
+
+        if ($herbergen) {
+            return redirect('/herbergen')->with('success', 'Herbergen is met succes aangepast');
+
+        } else {
+            return redirect('/herbergen')->with('error', 'Herbergen is niet aangepast');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Herbergen  $herbergen
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Herbergen $herbergen)
     {
-        //
+        //delete herbergen
+        $herbergen->delete();
+
+        if ($herbergen) {
+            return redirect('/herbergen')->with('success', 'Herbergen is met succes verwijderd');
+
+        } else {
+            return redirect('/herbergen')->with('error', 'Herbergen is niet verwijderd');
+        }
+
     }
 }

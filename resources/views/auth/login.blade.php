@@ -2,6 +2,22 @@
 
 @section('content')
 <div class="container-xxl p-4 bg-white vh-100">
+    @if(session()->has('succes'))
+        <div class="alert alert-success text-lg-center">
+            <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ session()->get('succes') }}
+        </div>
+    @endif
+    @if(session()->has('error'))
+        <div class="alert alert-danger text-lg-center">
+            <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button> {{ session()->get('error') }}
+        </div>
+    @endif
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

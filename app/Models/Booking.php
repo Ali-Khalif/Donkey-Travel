@@ -12,12 +12,28 @@ class booking extends Model
 
     protected $table = "bookings";
     protected $fillable = [
-        'Startdatum',
+        'StartDatum',
         'PINCode',
         'Trip_id',
-        'User_id',
+        'Klant_id',
         'Status_id'
     ];
+
+    public function trips(): BelongsTo
+    {
+        return $this->belongsTo(trip::class, 'Trip_id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(user::class, 'Klant_id');
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(status::class, 'Status_id');
+    }
+
 
 
 

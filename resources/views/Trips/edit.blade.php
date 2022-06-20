@@ -33,8 +33,10 @@
                         <div class="col-md-6 mt-2">
                             <div class="form-group">
                                 <label for="Omschrijving">Omschrijving</label>
+                                <select name="Trip_id" id="Trip_id" class="form-control">
                                 <input type="text" class="form-control" id="Omschrijving" name="Omschrijving"
                                        value="{{$trip->Omschrijving  }}">
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -50,12 +52,19 @@
                         </div>
                     </div>
 
-                    <!--submit-->
-                    <div class="row mt-4">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-lg btn-success">Wijzigingen opslaan</button>
-                            </div>
+                    <div class="col-md-12 mt-2">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-lg btn-success  text-white">
+                                <i class="bi bi-check-all"></i>
+                                Wijzigen
+                            </button>
+
+                            <a href="{{ route('trips.index') }}">
+                                <button type="button" class="btn btn-lg btn-danger  text-white">
+                                    <i class="bi bi-x"></i>
+                                    Annuleren
+                                </button>
+                            </a>
                         </div>
                     </div>
 

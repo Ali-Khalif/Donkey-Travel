@@ -55,7 +55,7 @@ class TripController extends Controller
         $trip->save();
 
         if ($trip) {
-            return redirect('/trips')->with('succes', 'Tocht is met succes toegevoegd');
+            return redirect('/trips')->with('success', 'Tocht is met succes toegevoegd');
 
         } else {
             return redirect('/trips')->with('error', 'Tocht niet aangemaakt');
@@ -111,7 +111,7 @@ class TripController extends Controller
         $trip->save();
 
         if ($trip) {
-            return redirect('/trips')->with('succes', 'Tocht is met succesvol aangepast');
+            return redirect('/trips')->with('success', 'Tocht is met succesvol aangepast');
         } else {
             return redirect('/trips')->with('error', 'Tocht is niet aangepast');
         }
@@ -129,7 +129,7 @@ class TripController extends Controller
         //destroy trip by id
         $trip->delete();
         if ($trip) {
-            return redirect('/trips')->with('succes', 'Tocht is met succesvol verwijderd');
+            return redirect('/trips')->with('success', 'Tocht is met succesvol verwijderd');
         } else {
             return back()->with('error', 'Verwijderen van trip is mislukt');
         }
