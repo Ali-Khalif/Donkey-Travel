@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->DATE('StartDatum');
             $table->integer('PINCode')->nullable();
             $table->foreignId('Trip_id')->nullable()->constrained('trips');
-            $table->foreignId('Klant_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('Klant_id')->nullable()->constrained('users');
             $table->foreignId('Status_id')->nullable()->constrained('statuses');
             $table->timestamps();
 

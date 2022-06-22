@@ -91,16 +91,12 @@ class StatusController extends Controller
 
     public function destroy(status $status)
     {
-        //
-        $status = status::find($status->id);
-        $status->delete();
-
-        if ($status) {
-            return redirect('/status')->with('success', 'Status is met succes verwijderd');
-
+        if ($status->Status == 'Definitief') {
+            return redirect('/status')->with('error', 'Status mag niet verwijderd worden');
         } else {
-            return redirect('/status')->with('error', 'Status is niet verwijderd');
-
+            $status->delete();
+            return redirect('/status')->with('success', 'Status is met succes verwijderd');
         }
+
     }
 }

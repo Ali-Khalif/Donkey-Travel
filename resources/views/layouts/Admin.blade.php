@@ -30,7 +30,7 @@
             <a class="navbar-brand px-lg-5 " href="{{ url('/') }}">
                 Donkey Travel
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
@@ -97,7 +97,7 @@
 
 <div class="left-nav">
     <!--bootstrap 5 sidebar responsive-->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+    <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
         <span class="navbar-toggler-icon"></span>
@@ -122,11 +122,18 @@
                 <li class="nav-item px-lg-2 ">
                     <a href="{{route('status.index')}}" class="nav-link">Statussen</a>
                 </li>
+
                 <li class="nav-item px-lg-2 ">
                     <a href="{{route('restaurant.index')}}" class="nav-link"> Restauranten</a>
                 </li>
                 <li class="nav-item px-lg-2 ">
                     <a href="{{route('herbergen.index')}}" class="nav-link">herbergen</a>
+                </li>
+                <li class="nav-item px-lg-2 ">
+                    <a href="{{route('overnachtingen.index')}}" class="nav-link">overnachtingplaats</a>
+                </li>
+                <li class="nav-item px-lg-2 ">
+                    <a href="{{route('pauzeplaatsen.index')}}" class="nav-link">pauzeplaats</a>
                 </li>
 
             </ul>

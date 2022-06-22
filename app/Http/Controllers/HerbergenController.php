@@ -11,7 +11,7 @@ class HerbergenController extends Controller
 
     public function index()
     {
-        //alle herbergen ophalen
+        //alles herbergen ophalen
         $herbergens = Herbergen::all();
         return view('herberg.index', compact('herbergens'));
     }
@@ -50,7 +50,7 @@ class HerbergenController extends Controller
     }
 
 
-//edit
+
     public function edit(Herbergen $herbergen)
     {
         //het formulier voor het bewerken van een herbergen

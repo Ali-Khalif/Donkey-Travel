@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class booking extends Model
 {
@@ -31,10 +33,23 @@ class booking extends Model
 
     public function status(): BelongsTo
     {
-        return $this->belongsTo(status::class, 'Status_id');
+        return $this->BelongsTo(status::class, 'Status_id');
     }
 
+    public function pauzeplaatsen(): HasMany
+    {
+        return $this->hasMany(pauzeplaatsen::class, 'booking_id');
+    }
 
+    public function overnachtingen(): HasMany
+    {
+        return $this->hasMany(overnachtingen::class, 'booking_id');
+    }
+
+    public function herbergen(): HasMany
+    {
+        return $this->hasMany(herbergen::class, 'booking_id');
+    }
 
 
 }

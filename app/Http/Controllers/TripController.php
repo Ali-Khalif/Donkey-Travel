@@ -24,22 +24,14 @@ class TripController extends Controller
         return view('trips.index', compact('trips'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return
-     */
+
     public function create()
     {
         //
         return view('Trips.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     *
-     */
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -63,38 +55,21 @@ class TripController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     *
-     */
-    //boeking
-    public function boeking()
-    {
-        $trips = trip::all();
-        return view('index', compact('trips'));
-    }
+
+
     public function show(trip $trip)
     {
         //show a specific trip
         return view('Trips.show', compact('trip'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     *
-     */
+
     public function edit(trip $trip)
     {
         return view('trips.edit', compact('trip'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     *
-     */
+
     public function update(Request $request, $trip)
     {
         //
@@ -119,14 +94,9 @@ class TripController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     *
-     */
+
     public function destroy(trip $trip)
     {
-        //destroy trip by id
         $trip->delete();
         if ($trip) {
             return redirect('/trips')->with('success', 'Tocht is met succesvol verwijderd');

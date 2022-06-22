@@ -67,22 +67,21 @@
                     <td>{{$booking->PINCode}}</td>
                     <td>{{date('d-m-Y', strtotime($booking->StartDatum . ' + ' . $booking->trips->AantalDagen . ' days'))}}</td>
                     <td class="">{{$booking->trips->Route}}lol</td>
-                    <td class="">{{$booking->Status}}</td>
+                    <td>{{$booking->status->Status}}</td>
+
                     <td>
                         <form action="{{ route('booking.edit', $booking->id) }}" method="GET">
                             @csrf
                             <button type="submit" class="btn btn-warning">
-                                <i class="bi-gear "></i>
-                                Bewerken
+                                <i class="bi bi-pencil text-light "></i>
                             </button>
                         </form>
 
                         <form action="{{ route('booking.destroy', $booking->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
+                            <button type="submit" class="btn btn-danger ">
                                 <i class="bi-trash "></i>
-                                Verwijderen
                             </button>
                         </form>
                     </td>

@@ -26,14 +26,18 @@
                             <div class="form-group">
                                 <label for="Route">Route naam</label>
                                 <input type="text" class="form-control" id="Route" name="Route"
-                                       placeholder="Enter Route">
+                                       value="{{ old('Route') }}" placeholder="Route naam">
+                                <span class="text-danger">{{ $errors->first('Route') }}</span>
+
                             </div>
                         </div>
                         <div class="col-md-6 mt-2">
                             <div class="form-group">
                                 <label for="Omschrijving">Omschrijving</label>
                                 <input type="text" class="form-control" id="Omschrijving" name="Omschrijving"
-                                       placeholder="Enter Omschrijving">
+                                       value="{{ old('Omschrijving') }}" placeholder="Enter Omschrijving">
+                                <span class="text-danger">{{ $errors->first('Omschrijving') }}</span>
+
                             </div>
                         </div>
                     </div>
@@ -43,7 +47,8 @@
                                 <label for="AantalDagen">Aantal Dagen</label>
                                 <!--min="1" max="10"-->
                                 <input type="number" class="form-control" id="AantalDagen" min="1" max="10"
-                                       name="AantalDagen" placeholder="Enter AantalDagen">
+                                       name="AantalDagen" value="{{ old('AantalDagen') }}" placeholder="Aantal Dagen">
+                                <span class="text-danger">{{ $errors->first('AantalDagen') }}</span>
                             </div>
                         </div>
                     </div>

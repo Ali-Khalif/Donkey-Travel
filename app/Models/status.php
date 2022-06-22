@@ -20,6 +20,28 @@ class status extends Model
 
     public function booking(): HasMany
     {
-        return $this->hasMany(booking::class);
+        return $this->hasMany(Booking::class, 'status_id');
     }
+
+    //pauzeplaatsen
+    public function pauzeplaatsen(): HasMany
+    {
+        return $this->hasMany(Pauzeplaatsen::class);
+    }
+
+    public function restaurant(): HasMany
+    {
+        return $this->hasMany(Restaurant::class);
+    }
+
+    public function herbergen(): HasMany
+    {
+        return $this->hasMany(Herbergen::class);
+    }
+
+    public function overnachtingen(): HasMany
+    {
+        return $this->hasMany(Overnachtingen::class);
+    }
+
 }

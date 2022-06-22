@@ -96,7 +96,7 @@ class RestaurantController extends Controller
 
     public function destroy(Restaurant $restaurant)
     {
-        //destroy restaurant
+
         $restaurant->delete();
 
         if ($restaurant) {

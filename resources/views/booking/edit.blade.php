@@ -35,24 +35,53 @@
 
                         <div class="col-md-6 mt-2">
                             <div class="form-group">
-                                <label for="Route">Status Omschrijving</label>
-                                <input type="text" class="form-control" id="Status" name="Status"
-                                       VALUE="{{$booking->StartDatum}}">
+                                <label for="Route">StartDatum</label>
+                                <!--get startdatum from booking  and edit it-->
+                                <input type="date" class="form-control" name="StartDatum"
+                                       value="{{ $booking->StartDatum }}">
+                                <input type="text" class="form-control" name="einddatum"
+                                       value="Eind-Datum {{date('d-m-Y', strtotime($booking->StartDatum . ' + ' . $booking->trips->AantalDagen . ' days'))}}"
+                                       readonly>
                             </div>
                         </div>
 
                         <div class="col-md-6 mt-2">
                             <div class="form-group">
                                 <label for="Verwijderbaar">Tocht</label>
-                                <select name="Trip_id" id="Trip_id" class="form-control">
+                                <select class="form-control" name="Trip_id">
                                     @foreach($trips as $trip)
-                                        <option value="{{ $trip->id }}">{{ $trip->Omschrijving }}
-                                            ({{ $trip->AantalDagen }} dagen)
-                                        </option>
+                                        @if($trip->id == $booking->Trip_id)
+                                            <option value="{{ $trip->id }}"
+                                                    selected="selected">{{ $trip->Omschrijving }}
+                                                ({{ $trip->AantalDagen }} dagen)
+                                            </option>
+                                        @else
+                                            <option value="{{ $trip->id }}">{{ $trip->Omschrijving }}
+                                                ({{ $trip->AantalDagen }} dagen)
+                                            </option>
+                                        @endif
+                                    @endforeach
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mt-2">
+                            <div class="form-group">
+                                <label for="Verwijderbaar">Status</label>
+                                <select class="form-control" name="Status_id">
+                                    @foreach($statuses as $status)
+                                        @if($status->id == $booking->status->id)
+                                            <option value="{{ $status->id }}"
+                                                    selected="selected">{{ $status->Status }}</option>
+                                        @else
+                                            <option value="{{ $status->id }}">{{ $status->Status }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+
                         <div class="col-md-12 mt-2">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-lg btn-success  text-white">
@@ -60,7 +89,7 @@
                                     Wijzigen
                                 </button>
 
-                                <a href="{{ route('booking.MijnBooking') }}">
+                                <a href="{{ route('booking.index') }}">
                                     <button type="button" class="btn btn-lg btn-danger  text-white">
                                         <i class="bi bi-x"></i>
                                         Annuleren

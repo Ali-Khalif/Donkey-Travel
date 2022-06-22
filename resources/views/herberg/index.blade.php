@@ -48,8 +48,7 @@
                     <td class="p-2">
                         <a href="{{route('herbergen.edit', $herbergen)}}">
                             <button type="submit" class="btn btn-warning">
-                                <i class="bi-gear "></i>
-                                Bewerken
+                                <i class="bi bi-pencil text-light "></i>
                             </button>
                         </a>
 

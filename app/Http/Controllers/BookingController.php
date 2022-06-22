@@ -13,7 +13,7 @@ class BookingController extends Controller
 
     public function index()
     {
-        //alle bookings van alle gebruikers ophalen met relaties
+        //
         $bookings = booking::with('user', 'trips', 'status')->get();
         return view('booking.index', compact('bookings'));
     }
@@ -26,19 +26,12 @@ class BookingController extends Controller
         return view('booking.mijnBooking', compact('bookings'));
     }
 
-//homrebooking
-    public function HomeBooking()
-    {
-        //count all bookings for the user with relation to trip and status
-        $bookings = booking::with('trips', 'status', 'user')->where('Klant_id', auth()->user()->id)->get();
-        return view('index', compact('bookings'));
-    }
 
     public function create()
     {
-        //trip_id
+        $statuses = status::all();
         $trips = trip::all();
-        return view('index', compact('trips'));
+        return view('index', compact('trips', 'statuses'));
     }
 
     public function store(Request $request)
@@ -46,12 +39,14 @@ class BookingController extends Controller
         //validate all inputs
         $this->validate($request, [
             'StartDatum' => 'required',
+            'status_id' => 'required',
             'Trip_id' => 'required',
             'Klant_id' => 'required',
         ]);
 
         $booking = new booking();
         $booking->StartDatum = $request->StartDatum;
+        $booking->Status_id = $request->status_id;
         $booking->Trip_id = $request->Trip_id;
         $booking->Klant_id = $request->Klant_id;
         $booking->save();
@@ -70,35 +65,51 @@ class BookingController extends Controller
         //
     }
 
-
+    //hier word de boeking gegevens opgehaald in en de edit form weergegeven
     public function edit(booking $booking)
     {
-        //edit booking with relation to trip and status
+        //
+        $statuses = status::all();
+        $trips = trip::all();
         $booking = booking::with('trips', 'status')->find($booking->id);
-        return view('booking.edit', compact('booking'));
+        return view('booking.edit', compact('booking', 'trips', 'statuses'));
     }
 
 
     public function update(Request $request, booking $booking)
     {
         //
-        $booking = booking::find($booking->id);
+        $this->validate($request, [
+            'StartDatum' => 'required',
+            'Status_id' => 'required',
+            'Trip_id' => 'required',
+        ]);
         $booking->StartDatum = $request->StartDatum;
         $booking->Trip_id = $request->Trip_id;
-    }
+        $booking->Status_id = $request->Status_id;
 
+        $booking->save();
 
-
-    public function destroy(booking $booking)
-    {
-        //delete booking
-        $booking->delete();
-
+        //redirect naar de index pagina
         if ($booking) {
-            return back()->with('success', 'Boeking is verwijderd');
+            return redirect('/booking')->with('success', 'Uw booking is aangepast');
 
         } else {
-            return back()->with('error', 'Boeking is niet verwijderd');
+            return back()->with('error', 'Uw booking is niet aangepast');
+        }
+
+    }
+
+    //hier word de boeking verwijderd. eerst word er gecontroleerd of de boeking defintief is,
+    // als dit niet het geval is, word de boeking verwijderd
+    public function destroy(booking $booking)
+    {
+        if ($booking->status->Status == 'Definitief') {
+            return back()->with('error', 'Uw booking is definitief en kan niet verwijderd worden');
+        } else {
+            $booking->delete();
+            return back()->with('success', 'Uw booking is verwijderd');
         }
     }
+
 }

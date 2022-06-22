@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HerbergenController;
+use App\Http\Controllers\OvernachtingenController;
+use App\Http\Controllers\PauzeplaatsenController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
@@ -21,11 +23,9 @@ use App\Http\Controllers\TripController;
 |
 */
 
-//HomeBooking
-//Route::get('/', [BookingController::class, 'HomeBooking'])->name('booking.home');
+
 
 Route::get('/', [BookingController::class, 'create'])->name('booking.create');
-//Route::post('/store', [BookingController::class, 'store'])->name('booking.store');
 Route::get('/mijnbooking', [BookingController::class, 'MijnBooking'])->name('booking.MijnBooking');
 //destroyMijnBooking
 //Route::delete('/destroyMijnBooking/{id}', [BookingController::class, 'destroyMijnBooking'])->name('booking.destroyMijnBooking');
@@ -55,7 +55,8 @@ Route::group(['middleware' => 'admin', 'verified' ], function () {
 Route::middleware(['admin'])->group(function () {
     Route::resource('/booking', BookingController::class
         , ['except' => ['create', 'store', 'destroy']]);
-
+    Route::resource('/overnachtingen', OvernachtingenController::class);
+    Route::resource('/pauzeplaatsen', PauzeplaatsenController::class);
     Route::resource('/herbergen', HerbergenController::class);
     Route::resource('/restaurant', RestaurantController::class);
     Route::resource('/trips', TripController::class);
@@ -69,4 +70,5 @@ Route::resource('/profile', UserController::class,
 Route::resource('/booking', BookingController::class,
     ['only' => [ 'store', 'show', 'edit', 'update', 'destroy']])->middleware('verified');
 
-
+//search overnachtingen
+Route::get('/search', [OvernachtingenController::class, 'search'])->name('search');

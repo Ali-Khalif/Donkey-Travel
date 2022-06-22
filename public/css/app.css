@@ -7728,7 +7728,11 @@ textarea.form-control-lg {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-success-rgb), var(--bs-text-opacity)) !important;
 }
+.text-purple{
+    --bs-text-opacity: 1;
+    color: #a160e1;
 
+}
 .text-info {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-info-rgb), var(--bs-text-opacity)) !important;

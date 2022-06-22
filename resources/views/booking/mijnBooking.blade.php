@@ -28,7 +28,9 @@
                                 <td>{{date('d-m-Y', strtotime($booking->StartDatum))}}</td>
                                 <td>{{date('d-m-Y', strtotime($booking->StartDatum . ' + ' . $booking->trips->AantalDagen . ' days'))}}</td>
                                 <td class="text-warning">{{$booking->trips->Route}}lol</td>
-                                <td class="text-warning">{{$booking->Status}}</td>
+                                <td class="text-warning">{{$booking->status->Status}}</td>
+
+
                                 <td>
                                     <!--form edit-->
                                     <form action="{{ route('booking.edit', $booking->id) }}" method="GET">

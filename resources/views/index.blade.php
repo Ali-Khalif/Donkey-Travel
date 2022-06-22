@@ -45,6 +45,18 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select class="form-control" name="status_id" readonly="readonly" hidden>
+                                                @foreach($statuses as $status)
+                                                    @if($status->id == 1)
+                                                        <option value="{{ $status->id }}" selected="selected">{{ $status->Status }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-6 mt-4">
                                         <div class="form-group">
                                             @if(Auth::check())
