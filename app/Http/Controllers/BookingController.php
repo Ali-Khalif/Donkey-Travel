@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+//Gemaakt door: Ali Khalif
+
 use App\Models\booking;
 use App\Models\status;
 use App\Models\user;
@@ -92,7 +94,7 @@ class BookingController extends Controller
 
         //redirect naar de index pagina
         if ($booking) {
-            return redirect('/booking')->with('success', 'Uw booking is aangepast');
+            return back()->with('success', 'Uw booking is aangepast');
 
         } else {
             return back()->with('error', 'Uw booking is niet aangepast');
@@ -105,10 +107,10 @@ class BookingController extends Controller
     public function destroy(booking $booking)
     {
         if ($booking->status->Status == 'Definitief') {
-            return back()->with('error', 'Uw booking is definitief en kan niet verwijderd worden');
+            return back()->with('error', 'Deze booking is definitief en kan niet verwijderd worden');
         } else {
             $booking->delete();
-            return back()->with('success', 'Uw booking is verwijderd');
+            return back()->with('success', 'Deze booking is verwijderd');
         }
     }
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\trip;
 use Illuminate\Http\Request;
 
-
+//Gemaakt door: Ali Khalif
 class TripController extends Controller
 {
     //search trip
@@ -59,7 +59,7 @@ class TripController extends Controller
 
     public function show(trip $trip)
     {
-        //show a specific trip
+        //
         return view('Trips.show', compact('trip'));
     }
 

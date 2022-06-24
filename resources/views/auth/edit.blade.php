@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container-xl">
+    <div class="container-xl vh-100">
 
         <h1>Wijzig jouw gegevens</h1>
 

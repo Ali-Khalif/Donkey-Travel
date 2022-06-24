@@ -1,5 +1,5 @@
 <?php
-
+//Gemaakt door: Tiago
 namespace App\Http\Controllers;
 
 use App\Models\Herbergen;
@@ -41,10 +41,10 @@ class HerbergenController extends Controller
         $herbergen->save();
 
         if ($herbergen) {
-            return redirect('/herbergen')->with('success', 'Uw herbergen is aangevraagd');
+            return redirect('/herbergen')->with('success', 'Uw herberg is aangevraagd');
 
         } else {
-            return redirect('/herbergen')->with('error', 'Uw herbergen is niet aangevraagd');
+            return redirect('/herbergen')->with('error', 'Uw herberg is niet aangevraagd');
         }
 
     }

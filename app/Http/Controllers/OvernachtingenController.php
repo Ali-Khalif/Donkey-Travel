@@ -8,19 +8,13 @@ use App\Models\Overnachtingen;
 use App\Models\status;
 use Illuminate\Http\Request;
 
+//Gemaakt door: Ali
 
 class OvernachtingenController extends Controller
 {
     //search for the overnachtingen
     public function search(Request $request)
     {
-        //search field
-        // $trips = trip::where('Route', 'LIKE', '%' . $request->input('search') . '%')
-        //            ->orWhere('Omschrijving', 'LIKE', '%' . $request->input('search') . '%')
-        //            ->orWhere('AantalDagen', 'LIKE', '%' . $request->input('search') . '%')
-        //            ->paginate(10);
-        //        return view('trips.index', compact('trips'));
-        //overnachtingen with relation to status restaurant and booking
         $overnachtingen = Overnachtingen::with('status', 'booking', 'restaurant')
             //booking id in the booking table and get booking name
             ->whereHas('booking', function ($query) {
@@ -101,7 +95,6 @@ class OvernachtingenController extends Controller
 
     public function destroy(Overnachtingen $overnachtingen)
     {
-
         $overnachtingen=Overnachtingen::find($overnachtingen->id);
 
         if ($overnachtingen->status->Status == 'Definitief') {
@@ -110,7 +103,6 @@ class OvernachtingenController extends Controller
             $overnachtingen->delete();
             return redirect('/overnachtingen')->with('success', 'De overnachting is verwijderd');
         }
-
 
     }
 

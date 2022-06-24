@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+//Gemaakt door: Ali Khalif
 class UserController extends Controller
 {
     /*
@@ -14,14 +14,14 @@ class UserController extends Controller
         return view('auth.index', compact('user'));
     }*/
 
-    //user can edit their profile
+    //
     public function edit()
     {
         $user = Auth::user();
         return view('auth.edit', compact('user'));
     }
 
-    //if user has updated their profile send them an email with the new details
+    //
 
     public function update(Request $request)
     {

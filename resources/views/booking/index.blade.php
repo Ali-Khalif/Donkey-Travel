@@ -53,7 +53,7 @@
                 <th scope="col">Start Datum</th>
                 <th scope="col">Pincode</th>
                 <th scope="col">Eind Datum</th>
-                <th scope="col">Trip</th>
+                <th scope="col">Tocht Route</th>
                 <th scope="col">Status</th>
                 <th scope="col">Action</th>
             </tr>

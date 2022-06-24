@@ -27,31 +27,20 @@ use App\Http\Controllers\TripController;
 
 Route::get('/', [BookingController::class, 'create'])->name('booking.create');
 Route::get('/mijnbooking', [BookingController::class, 'MijnBooking'])->name('booking.MijnBooking');
-//destroyMijnBooking
-//Route::delete('/destroyMijnBooking/{id}', [BookingController::class, 'destroyMijnBooking'])->name('booking.destroyMijnBooking');
-
-//destroy
-//Route::delete('/booking/{id}', [BookingController::class, 'destroyy'])->name('booking.destroyy');
 
 
 //route search
 Route::get('/search', [TripController::class, 'search'])->name('search');
 
 Auth::routes(['verify' => true]);
-//Route::resource('status', StatusController::class)->middleware('admin');
+//user profile homepage
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//Route::resource('/home', UserController::class)->middleware('verified');
-//if user is_admin = true then redirect to route::resource('admin', 'AdminController');
+
 
 Route::get('/admin', function () {
     return view('layouts.Admin');
 })->middleware('admin');
-/*
-Route::group(['middleware' => 'admin', 'verified' ], function () {
-    Route::resource('/trips', TripController::class);
-    Route::resource('/status', StatusController::class);
-});*/
-//Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+
 Route::middleware(['admin'])->group(function () {
     Route::resource('/booking', BookingController::class
         , ['except' => ['create', 'store', 'destroy']]);
@@ -71,4 +60,4 @@ Route::resource('/booking', BookingController::class,
     ['only' => [ 'store', 'show', 'edit', 'update', 'destroy']])->middleware('verified');
 
 //search overnachtingen
-Route::get('/search', [OvernachtingenController::class, 'search'])->name('search');
+//Route::get('/search', [OvernachtingenController::class, 'search'])->name('search');

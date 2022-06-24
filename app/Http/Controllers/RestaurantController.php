@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
-
+//Gemaakt door: Tiago
 class RestaurantController extends Controller
 {
 

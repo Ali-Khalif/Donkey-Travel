@@ -1,7 +1,7 @@
-@extends('layouts.Admin')
+@extends('layouts.app')
 @section('content')
 
-    <div class="container">
+    <div class="container vh-100">
         <div class="row justify-content-center">
             <div class="row">
 
@@ -88,13 +88,22 @@
                                     <i class="bi bi-check-all"></i>
                                     Wijzigen
                                 </button>
+                                @if(Auth::user()->is_admin == true)
+                                    <a href="{{ route('booking.index') }}">
+                                        <button type="button" class="btn btn-lg btn-danger  text-white">
+                                            <i class="bi bi-x"></i>
+                                            Annuleren
+                                        </button>
+                                    </a>
+                                @else
+                                    <a href="{{ route('booking.MijnBooking') }}">
+                                        <button type="button" class="btn btn-lg btn-danger  text-white">
+                                            <i class="bi bi-x"></i>
+                                            Annuleren
+                                        </button>
+                                    </a>
+                                @endif
 
-                                <a href="{{ route('booking.index') }}">
-                                    <button type="button" class="btn btn-lg btn-danger  text-white">
-                                        <i class="bi bi-x"></i>
-                                        Annuleren
-                                    </button>
-                                </a>
                             </div>
                         </div>
                     </div>

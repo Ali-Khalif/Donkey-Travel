@@ -8,6 +8,7 @@ use App\Models\Pauzeplaatsen;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
+//Gemaakt door: Tiago
 class PauzeplaatsenController extends Controller
 {
 
@@ -90,9 +91,7 @@ class PauzeplaatsenController extends Controller
 
     public function destroy(Pauzeplaatsen $pauzeplaatsen)
     {
-
-        //$pauzeplaatsen=Pauzeplaatsen::find($pauzeplaatsen->id);
-
+        //
         if ($pauzeplaatsen->status->Status == 'Definitief') {
             return redirect('/pauzeplaatsen')->with('error', 'Deze pauzeplaats is definitief en kan niet verwijderd worden');
         } else {

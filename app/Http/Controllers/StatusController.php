@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\status;
 use Illuminate\Http\Request;
 
-
+//Gemaakt door: Ali Khalif
 class StatusController extends Controller
 {
 
